@@ -21,7 +21,21 @@ class FormActivity : AppCompatActivity() {
             Toast.makeText(this, "Tombol di klik", Toast.LENGTH_SHORT).show()
         })
 
+        val recycleview = findViewById<RecyclerView>(R.id.rv_movie)
+        val adapter = MovieAdapter(movieData.listMovie)
+        recycleview.setHasFixedSize(true)
+        recycleview.layoutManager = LinearLayoutManager(this)
+        recycleview.adapter = adapter
 
+        adapter.setOnItemClickCallback(object : MovieAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: movies) {
+                val intent = Intent(this@FormActivity, DetailMovieActivity::class.java)
+                intent.putExtra("movieName", data.name)
+                intent.putExtra("movieImage", data.image)
+                intent.putExtra("movieDesc", data.description)
+                startActivity(intent)
+            }
+        })
 
     }
 }
