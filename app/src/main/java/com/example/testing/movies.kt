@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class movies(
     val name:String,
     val description:String,
+    val image:Int
 
 ):Parcelable
